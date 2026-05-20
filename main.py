@@ -4,12 +4,14 @@ from flask_cors import CORS
 import google.generativeai as genai
 
 app = Flask(__name__)
-CORS(app) # Taaki website bina kisi block ke chale
+CORS(app)
 
-# --- GOOGLE GEMINI KEY ---
-GEMINI_KEY = "AIzaSyA5V-kWwYOBUt2QtqVnQA8waGjIm5I5xfY"
+# 🔥 EKDUM FRESH NEW GEMINI KEY 🔥
+GEMINI_KEY = "AIzaSyD_V7mN_Wp3X8zLq9K5vRt_B4nJ2mQ6" 
 genai.configure(api_key=GEMINI_KEY)
-model = genai.GenerativeModel('models/gemini-1.5-flash-latest')
+
+# 🚀 Ekdum stable universal model name
+model = genai.GenerativeModel('gemini-pro')
 
 @app.route('/')
 def home():
@@ -21,11 +23,14 @@ def ask_ai():
     if not user_message:
         return jsonify({'reply': 'Bhai, kuch likho toh sahi!'})
     try:
+        # Simple content generation
         response = model.generate_content(user_message)
-        return jsonify({'reply': response.text})
+        if response.text:
+            return jsonify({'reply': response.text})
+        else:
+            return jsonify({'reply': 'Google AI ne khali jawab diya, fir se try karo bhai.'})
     except Exception as e:
         return jsonify({'reply': f"Galti: {str(e)}"})
 
-# Vercel ke liye server setup
 def handler(request):
     return app(request)
