@@ -9,7 +9,7 @@ CORS(app) # Taaki website bina kisi block ke chale
 # --- GOOGLE GEMINI KEY ---
 GEMINI_KEY = "AIzaSyA5V-kWwYOBUt2QtqVnQA8waGjIm5I5xfY"
 genai.configure(api_key=GEMINI_KEY)
-model = genai.GenerativeModel('gemini-1.5-flash')
+model = genai.GenerativeModel('models/gemini-1.5-flash-latest')
 
 @app.route('/')
 def home():
