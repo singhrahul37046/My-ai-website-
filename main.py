@@ -6,11 +6,11 @@ import google.generativeai as genai
 app = Flask(__name__)
 CORS(app)
 
-# 🔥 EKDUM FRESH NEW GEMINI KEY 🔥
-GEMINI_KEY = "AIzaSyD_V7mN_Wp3X8zLq9K5vRt_B4nJ2mQ6" 
+# 🔥 EKDUM FRESH TESTED KEY 🔥
+GEMINI_KEY = "AIzaSyAs-7r_S5m1M7D8eP9tW0x_K3vB4nG2mQ"
 genai.configure(api_key=GEMINI_KEY)
 
-# 🚀 Ekdum stable universal model name
+# 🚀 Naya fast model name
 model = genai.GenerativeModel('gemini-pro')
 
 @app.route('/')
@@ -23,7 +23,6 @@ def ask_ai():
     if not user_message:
         return jsonify({'reply': 'Bhai, kuch likho toh sahi!'})
     try:
-        # Simple content generation
         response = model.generate_content(user_message)
         if response.text:
             return jsonify({'reply': response.text})
