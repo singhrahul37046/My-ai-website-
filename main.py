@@ -6,12 +6,12 @@ import google.generativeai as genai
 app = Flask(__name__)
 CORS(app)
 
-# 🔥 Ab code automatic Vercel se key uthayega, GitHub par leak nahi hogi!
-GEMINI_KEY = os.environ.get("GEMINI_API_KEY")
+# 🔥 Yeh ab Vercel se nayi GEMINI_KEY uthayega
+GEMINI_KEY = os.environ.get("GEMINI_KEY")
 if GEMINI_KEY:
     genai.configure(api_key=GEMINI_KEY)
 
-model = genai.GenerativeModel('gemini-pro-flash')
+model = genai.GenerativeModel('gemini-pro')
 
 @app.route('/')
 def home():
@@ -19,8 +19,8 @@ def home():
 
 @app.route('/api/ask', methods=['POST'])
 def ask_ai():
-    if not os.environ.get("GEMINI_API_KEY"):
-        return jsonify({'reply': 'Bhai, Vercel mein API Key set nahi hai!'})
+    if not os.environ.get("GEMINI_KEY"):
+        return jsonify({'reply': 'Bhai, Vercel mein GEMINI_KEY set nahi hai!'})
         
     user_message = request.json.get('message')
     if not user_message:
